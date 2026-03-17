@@ -36,9 +36,11 @@ import (
 //     ├─ #<room_name>      : 必需，房间显示名称（URL fragment）
 //     └─ ?room_pass=<pwd>  : 必需，房间访问密码（查询参数）
 //
+//     默认端口: 9147（当未指定端口时自动添加）
+//
 //     有效示例:
 //
-//   - "fernq://192.168.1.1:8080/550e8400-e29b-41d4-a716-446655440000#lobby?room_pass=123456"
+//   - "fernq://192.168.1.1:9147/550e8400-e29b-41d4-a716-446655440000#lobby?room_pass=123456"
 //
 //   - "fernq://[::1]:9000/12345678-1234-1234-1234-123456789abc#room-1?room_pass=secret"
 //
@@ -92,7 +94,7 @@ import (
 // 示例:
 //
 //	channelId := &ChannelId{Id: 1}
-//	url := "fernq://127.0.0.1:8080/550e8400-e29b-41d4-a716-446655440000#my-room?room_pass=secret"
+//	url := "fernq://127.0.0.1:9147/550e8400-e29b-41d4-a716-446655440000#my-room?room_pass=secret"
 //
 //	addr, frame, err := CreateValidate("client-1", channelId, url)
 //	if err != nil {
@@ -287,8 +289,8 @@ func validateIPv4OrHostname(addr string) (string, error) {
 		}
 		return addr, nil
 	}
-	// 无端口，返回原地址
-	return addr, nil
+	// 无端口，返回原地址+默认端口
+	return addr + ":9147", nil
 }
 
 func validateIPv6Address(addr string) (string, error) {

@@ -30,7 +30,16 @@ func NewClient(name string, more ...*router.Router) *Client {
 	}
 }
 
-// Connect connects to the Fernq server.
+// Connect connects to the Fernq server at the specified URL.
+//
+// Parameters:
+//   - url: Fernq protocol URL of the server (e.g., "fernq://localhost:9147/550e8400-e29b-41d4-a716-446655440000#my-room?room_pass=123456")
+//     Format: fernq://<host>[:<port>]/<uuid>#<room_name>?room_pass=<password>
+//
+// Returns: An error if connection fails or if already connected
+//
+// This method is thread-safe and will return an error if called while a connection attempt is in progress
+// or if the client is already connected.
 func (c *Client) Connect(url string) error {
 	// 给该函数上锁
 	c.is_conning.Lock()
