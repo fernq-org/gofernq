@@ -2,6 +2,8 @@ module github.com/fernq-org/gofernq
 
 go 1.24.5
 
+// SPDX-License-Identifier: MIT
+
 require (
 	github.com/google/uuid v1.6.0
 	github.com/puzpuzpuz/xsync/v3 v3.5.1
