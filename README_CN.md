@@ -105,7 +105,7 @@ data := map[string]interface{}{
     "age":  30,
 }
 
-resp, err := client.Request("/api/user", data)
+resp, err := client.Request("fernq://api/user", data)
 if err != nil {
     panic(err)
 }
