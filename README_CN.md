@@ -55,7 +55,7 @@ func main() {
     defer client.Close()
 
     // 发送请求
-    resp, err := client.Request("/api/hello")
+    resp, err := client.Request("fernq://api/hello")
     if err != nil {
         panic(err)
     }
